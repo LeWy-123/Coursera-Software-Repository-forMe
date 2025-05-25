@@ -8,8 +8,13 @@
 filePath = './text/mbox-short.txt'
 
 fname = input('Enter file name: ')
-fhandle = open(filePath, 'r')
+# if no input use the default file name
+if fname is None or fname == '':
+    fname = filePath
+
+fhandle = open(fname, 'r')
 count = 0
+countA = 0
 senders = {}
 lineN = 0
 # reading file
@@ -19,10 +24,10 @@ for line in fhandle:
     if not line.startswith('From'):     # skipping the lines that dont contain 'from:'
         continue
     # Snipping out the email address
-    count += 1
+    countA += 1
     emailsender = line.split()
     emailsender = emailsender[1]
-    print(f'Added: {emailsender}, count: {count}, lineN: {lineN}')
+    #print(f'Added: {emailsender}, count: {count}, lineN: {lineN}') # Debug LINE
     senders[emailsender] = senders.get(emailsender, 0) + 1
 
 # finding the most active senders email
@@ -39,3 +44,6 @@ for sender, c in senders.items():
     if c == prev:
         print(sender, c)
 
+# Debug line
+print(f'{countA} emails received.')
+print(f'{senders}')

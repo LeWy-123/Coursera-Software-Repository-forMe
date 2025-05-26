@@ -32,7 +32,7 @@ for line in fhandle:
             continue
         letters[letter] = letters.get(letter, 0) + 1    # itt adds to the dictionary if it's already in ads +1 to it
         #print(f'\t--> "{letter}" Added: {letters[letter]} times.')
-    if line == []:
+    if not line:
         continue
 
     linenumb += 1

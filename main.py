@@ -1,0 +1,1 @@
+print('You ran the main.py file sorry you might wanna run the current file?')

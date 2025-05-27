@@ -13,13 +13,14 @@ if file == '':
     file = './text/mbox-short.txt'
 
 try:
-    fhandle = open(file, 'r')
+    fhandle = open(file, 'r', encoding='utf-8')
 except FileNotFoundError:
     print('File not found. sorry!')
 
 letters = {}    # to store letters in this variable
 linestext = 0   # DISPLAY lines are we worked with
 linenumb = 0
+ignorable = string.punctuation + ' ' + string.digits + '\t' + '”' + '„' + '–'
 
 for line in fhandle:
     line = line.rstrip()
@@ -27,7 +28,7 @@ for line in fhandle:
     line = line.lower()
     # Getting the letters one by one
     for letter in line:
-        if letter in string.punctuation + ' ' + string.digits + '\t':    # if doesn't contain letters just
+        if letter in ignorable:    # if it doesn't contain letters just
             # punctuations it skips the string or letter, also skips tabs, and digits.
             continue
         letters[letter] = letters.get(letter, 0) + 1    # itt adds to the dictionary if it's already in ads +1 to it

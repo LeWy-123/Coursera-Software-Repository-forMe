@@ -17,16 +17,16 @@ soup = BeautifulSoup(html, 'html.parser')
 numbers = soup.find_all('span', attrs={'class': 'comments'})
 
 print("Number of comments:", len(numbers))
-print("Printing the values:", numbers[0].text)  # First number on the same line
+print("Printing the values:", '\033[92m', numbers[0].text)  # First number on the same line
 n = int(numbers[0].text)        # this put the initial number as first number value
 elements = []
 
 for i in numbers[1:]:  # Start from the second item
-    print(f'{i.text:>23}')  # Adjust spacing here if needed
+    print(f"{i.text:>24}")  # Adjust spacing here if needed
     n += int(i.text)
     elements.append(i.text)
 
-print('-' * 50)
+print('\033[0m-' * 50)
 print(f'Sum of the elements: {n}')
 print(f'Average of the elements: {n / len(numbers)}')
 print(f'Biggest number {max(elements)}')

@@ -43,10 +43,18 @@ while True:
     if current_url:
         # loading and printing the list
         print('-' * 50)
-        html = urlopen(current_url, context=ctx).read()
+        try:
+            html = urlopen(current_url, context=ctx).read()
+        except:
+            print('Cant open that URL!')
+            quit()
         soup = BeautifulSoup(html, 'html.parser')
         anchors = soup('a')
         counter = 1
+        if anchors is []:
+            print('No Anchor found!')
+            quit()
+
         for tag in anchors:
             print(f'{counter}) {tag.get('href', None)}')
             counter += 1
@@ -58,7 +66,7 @@ while True:
     print(f'Names by order: ', end='')
     for nam in names:
         for nn in nam:
-            print(f'{nn} > ', end=' ')
+            print(f'{nn} >', end=' ')
     print(f'\nWhat link you wanna follow? enter its number.')
     n = input('> ')
     current_url = digging(current_url, n)

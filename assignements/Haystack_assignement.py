@@ -4,7 +4,7 @@
 
 import re
 
-file = './text/regex_sum_2223026.txt'
+file = '../text/regex_sum_2223026.txt'
 
 # Read and process the file in one go
 with open(file) as f:

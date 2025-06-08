@@ -1,12 +1,22 @@
 import socket
 import ssl
+import re
 
 URL = input("Enter URL: ")
+#('https://www.py4e.com/tools/python-data/?PHPSESSID=5ca53ef4cacd101795073ffc33e33795')
+clean = re.sub(r'^https?://(www\.)?', '', URL)
 
-hostname = URL
-port = 443  # HTTPS
+if 'http' in URL:
+    port = 80
+else:
+    port = 443
+print(clean)
+
+hostname = clean
 
 context = ssl.create_default_context()
+context.check_hostname = False
+context.verify_mode = ssl.CERT_NONE
 sock = socket.create_connection((hostname, port))
 ssock = context.wrap_socket(sock, server_hostname=hostname)
 

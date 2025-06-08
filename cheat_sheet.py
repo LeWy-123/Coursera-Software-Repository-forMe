@@ -80,11 +80,22 @@ import xml.etree.ElementTree as ET
 
 tree = ET.fromstring(xml_string)
 
-# 3. XML feldolgozás ElementTree modullal
+# 6. XML feldolgozás ElementTree modullal
 #✅ Alapvető XML parsing
 # Példa: bejárás
-for item in tree.findall(".//item"):
+# tree.findall("/something/item/"): ez pedig relativ path
+for item in tree.findall(".//item"):  # xPath style
     title = item.find("title").text
     link = item.find("link").text
     print("Cím:", title)
     print("Link:", link)
+
+# 7. JSON parsing
+import json
+
+# ✅ Example Python dictionary (like data from an API or file)
+data = {
+    "name": "Levente",
+    "age": 28,
+    "skills": ["Python", "Git", "Web Dev"]
+}

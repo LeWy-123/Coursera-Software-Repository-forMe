@@ -99,3 +99,5 @@ data = {
     "age": 28,
     "skills": ["Python", "Git", "Web Dev"]
 }
+
+js = json.dumps(data) # tartalmazza a JSON file tartalmat belso python formatumba
